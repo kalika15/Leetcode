@@ -1,6 +1,6 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        '''dp=[-1 for i in range(len(s)-1)]
+        dp=[-1 for i in range(len(s)+1)]
         return self.solve(s,0,dp)
     def solve(self,string,i,dp):
         if i>=len(string):
@@ -18,8 +18,8 @@ class Solution:
                 if num>=10 and num<=26:
                     r=self.solve(string,i+2,dp)
             dp[i]=l+r
-            return dp[i]'''
-        def solve(s,i,DP):
+            return dp[i]
+        '''def solve(s,i,DP):
             if i>=len(s):
                 return 1
             else:
@@ -37,5 +37,5 @@ class Solution:
                 DP[i]= a+b
                 return DP[i]
         DP=[-1 for i in range(len(s)+1)]
-        return solve(s,0,DP)
+        return solve(s,0,DP)'''
     
