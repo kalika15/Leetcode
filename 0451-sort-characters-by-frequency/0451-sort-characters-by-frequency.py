@@ -1,15 +1,18 @@
+
 class Solution:
     def frequencySort(self, s: str) -> str:
-        k=dict(Counter(s))
-        m=sorted(k.values(),reverse=True)
-        s={}
-        for i in m:
-            for j in k:
-                if k[j]==i:
-                    s[j]=k[j]
-        ans=""
+        d={}
         for i in s:
-            for j in range(s[i]):
-                ans+=i
-        return ans
-        
+            d[i]=d.get(i,0)+1
+        max_heap=[]
+        for ch,freq in d.items():
+            heappush(max_heap,(-freq,ch))
+        prev_ch=None
+        prev_freq=None
+        temp=""
+        while max_heap:
+            curr_freq,curr_char=heappop(max_heap)
+            curr_freq=-(curr_freq)
+            temp+=curr_char*curr_freq
+        return temp
+                
