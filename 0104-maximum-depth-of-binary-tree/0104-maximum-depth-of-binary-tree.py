@@ -23,11 +23,10 @@ class Solution:
         traverse(root,d,roots)
         ans=0
         for i in roots:
-            j=i
             temp=1
-            while d[j]!=None:
+            while d[i]!=None:
                 temp+=1
-                j=d[j]
+                i=d[i]
             ans=max(ans,temp)
         return ans
                 
