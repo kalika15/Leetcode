@@ -8,7 +8,6 @@ class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
         ans=""
         return self.solve(root,ans)
-        return ans
     def solve(self,root,ans):
         if root.left is None and root.right is None:
             ans=ans+str(root.val)
