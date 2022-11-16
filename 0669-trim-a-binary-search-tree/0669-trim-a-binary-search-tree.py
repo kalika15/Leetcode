@@ -18,4 +18,4 @@ class Solution:
         else:
             root.right=self.solve(root.right,low,high)
             root.left=self.solve(root.left,low,high)
-            return root
+        return root
