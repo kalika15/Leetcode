@@ -8,7 +8,6 @@ class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
         ans=[]
         self.traverse(root,ans)
-        ans.sort()
         t=TreeNode(ans[0])
         
         p=t
@@ -20,8 +19,8 @@ class Solution:
     def traverse(self,root,ans):
         if root is None:
             return root
-        ans.append(root.val)
         self.traverse(root.left,ans)
+        ans.append(root.val)
         self.traverse(root.right,ans)
         return ans
 
