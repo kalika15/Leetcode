@@ -17,7 +17,6 @@ class Solution:
             ptr.next=n
             ptr=n.next
         oldptr=head
-        newptr=oldptr.next
         while oldptr!=None:
             if oldptr.random==None:
                 oldptr.next.random=None
