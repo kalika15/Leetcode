@@ -1,52 +1,50 @@
-class DoublyListNode:
-    def __init__(self,key,val,next=None,prev=None):
-        self.key=key
+class ListNode:
+    def __init__(self,val,value,next=None,prev=None):
         self.val=val
-        self.prev=prev
+        self.value=value
         self.next=next
-        
+        self.prev=prev
 class LRUCache:
 
     def __init__(self, capacity: int):
         self.capacity=capacity
         self.d={}
-        self.head=DoublyListNode(0,0)
-        self.tail=DoublyListNode(0,0)
+        self.head=ListNode(-1,-1)
+        self.tail=ListNode(-1,-1)
         self.head.next=self.tail
         self.tail.prev=self.head
-        
+
     def get(self, key: int) -> int:
-        
         if key in self.d:
             x=self.d[key]
-            self.deletion(x)
-            self.insertion(x)
-            
-            return x.val
+            a=self.Deletion(x)
+            new=ListNode(key,a[1])
+            self.Insertion(new)
+            return a[1]
         else:
             return -1
-        
 
     def put(self, key: int, value: int) -> None:
-        
         if key in self.d:
-            self.deletion(self.d[key])
-        newhead=DoublyListNode(key,value)
-        self.insertion(newhead)
-        self.d[key]=newhead
-        if len(self.d)>self.capacity:
-            newhead=self.head.next
-            self.deletion(newhead)
-            del self.d[newhead.key]
+            x=self.d[key]
+            self.Deletion(x)
+        new=ListNode(key,value)
+        if len(self.d)==self.capacity:
+            self.Deletion(self.tail.prev)
+        self.Insertion(new)
         
-    def insertion(self,node):
-        self.tail.prev.next, node.next = node, self.tail
-        self.tail.prev, node.prev = node, self.tail.prev
-    
-    def deletion(self,node):
+    def Insertion(self,node):
+        self.d[node.val]=node
+        node.next=self.head.next
+        node.next.prev=node
+        self.head.next=node
+        node.prev=self.head
+        
+    def Deletion(self,node):
+        del self.d[node.val]
         node.prev.next=node.next
         node.next.prev=node.prev
-    
+        return [node.val,node.value]
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
