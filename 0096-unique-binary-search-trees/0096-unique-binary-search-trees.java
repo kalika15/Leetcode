@@ -1,14 +1,16 @@
 class Solution {
-    public int numTrees(int n) {
-        int a=solve(1,n);
-        return a;
+    public int numTrees(int n){
+        return numberofbst(1,n);
+        
     }
-    public int solve(int i,int j){
-        if(i>=j) return 1;
-        int a=0;
-        for(int round=i;round<=j; round++){
-            a+=solve(i,round-1)*solve(round+1,j);
+    public int numberofbst(int start,int end){
+        if(start>=end){
+            return 1;
         }
-        return a;
+        int ways=0;
+        for(int i=start;i<=end;i++){
+            ways+=numberofbst(start,i-1)*numberofbst(i+1,end);
+        }
+        return ways;
     }
 }
