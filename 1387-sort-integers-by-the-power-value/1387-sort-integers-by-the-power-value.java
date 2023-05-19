@@ -1,4 +1,5 @@
 class Solution {
+    Map<Integer,Integer> dp=new HashMap<>();
     public int getKth(int lo, int hi, int k) {
         int[][] power=new int[hi-lo+1][2];
         int index=0;
@@ -12,6 +13,7 @@ class Solution {
     }
     private int calculatePower(int num){
         if(num==1) return 0;
+        if(dp.containsKey(num)) return dp.get(num);
         int step=0;
         if(num%2==0){
             step=1+calculatePower(num/2);
@@ -19,6 +21,7 @@ class Solution {
         else{
             step=1+calculatePower(num*3+1);
         }
+        dp.put(num,step);
         return step;
     }
 }
