@@ -1,13 +1,13 @@
 class Solution {
+    int[][] dp;
     public int countVowelStrings(int n) {
-        return solve(n,1);
+        dp=new int[n+1][6];
+        return solve(n,5);
     }
-    private int solve(int n,int start){
-        if(n==0) return 1;
-        int result=0;
-        for(int i=start; i<=5; i++){
-            result+=solve(n-1,i);
-        }
-        return result;
+    private int solve(int n,int v){
+        if(n==1) return v;
+        if(v==1) return 1;
+        if(dp[n][v]!=0) return dp[n][v];
+        return dp[n][v]=solve(n-1,v)+solve(n,v-1);
     }
 }
