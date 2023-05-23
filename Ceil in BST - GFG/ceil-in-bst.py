@@ -8,7 +8,7 @@ class Solution:
         if root.key==inp:
             return root.key
         if root.key<inp:
-            return self.findCeil(root.right, inp)
+            return self.findCeil(root.right,inp)
         v=self.findCeil(root.left,inp)
         if(v>=inp):
             return v
